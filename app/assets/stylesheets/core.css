@@ -1,0 +1,34 @@
+body {
+  background: url(black-background.png);
+  font-family: sans-serif;
+}
+
+.disp-area{
+}
+
+.disp-unit{
+  width: 260px;
+  margin:10px;
+  float:left;
+  position: relative;
+  background: url(title-background.png);
+  font-family:helvetica,arial,sans-serif; 
+  font-color:#292A2B;
+  font-size:15px;
+  overflow: hidden;
+  border-radius:8px; 
+}
+
+
+
+.disp-title{
+  font-size: 28px;
+  font-family:fantasy;
+  padding: 5px;
+}
+
+.disp-unit .img{
+  vertical-align: middle;
+  padding: 5px;
+  width: 100%;
+}

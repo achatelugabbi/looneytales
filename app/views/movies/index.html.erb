@@ -1,0 +1,11 @@
+<h4> Displaying Movies... </h4>
+<div class='disp-area'>
+  <% @movies.each do |movie| %>
+    <div class='disp-unit'>
+      <div class='disp-img'>
+        <img src='<%= movie.thumbnails.first['url'] if (movie.thumbnails && !movie.thumbnails.empty? && movie.thumbnails.first['url'])%>'/> 
+      </div>
+      <div class='disp-title'> <%= movie.name %> </div>
+    </div>
+  <% end %>
+</div>
