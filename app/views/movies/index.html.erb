@@ -1,11 +1,12 @@
 <h4> Displaying Movies... </h4>
-<div class='disp-area'>
+<div id='disp-area'>
   <% @movies.each do |movie| %>
     <div class='disp-unit'>
       <div class='disp-img'>
         <img src='<%= movie.thumbnails.first['url'] if (movie.thumbnails && !movie.thumbnails.empty? && movie.thumbnails.first['url'])%>'/> 
       </div>
       <div class='disp-title'> <%= movie.name %> </div>
+      <div class='disp-desc'> <%= truncate(movie.desc, :length => Random.rand(200)) %> </div>
     </div>
   <% end %>
 </div>

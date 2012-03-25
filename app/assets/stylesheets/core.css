@@ -3,7 +3,7 @@ body {
   font-family: sans-serif;
 }
 
-.disp-area{
+#disp-area{
 }
 
 .disp-unit{
@@ -18,8 +18,6 @@ body {
   overflow: hidden;
   border-radius:8px; 
 }
-
-
 
 .disp-title{
   font-size: 28px;
