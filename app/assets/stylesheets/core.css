@@ -9,8 +9,7 @@ body {
 .disp-unit{
   width: 260px;
   margin:10px;
-  float:left;
-  position: relative;
+  clear:both;
   background: url(title-background.png);
   font-family:helvetica,arial,sans-serif; 
   font-color:#292A2B;
@@ -22,11 +21,12 @@ body {
 .disp-title{
   font-size: 28px;
   font-family:fantasy;
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
   padding: 5px;
 }
 
-.disp-unit .img{
-  vertical-align: middle;
-  padding: 5px;
+.disp-img img{
   width: 100%;
 }
