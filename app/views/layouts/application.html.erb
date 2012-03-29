@@ -7,11 +7,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
-    <h1> Movies Only Better! </h1>
-  </header>
-
-<%= yield %>
-
+  <div id="header">
+    <div class="menu-container">
+      <ul>
+        <li class="menu-item"><span>Home</span></li>
+        <li class="menu-item"><span>Hindi</span></li>
+        <li class="menu-item"><span>Telugu</span></li>
+        <li class="menu-item"><span>Tamil</span></li>
+<!--
+        <li class="menu-item"><span>Malayalam</span></li>
+        <li class="menu-item"><span>Kannada</span></li>
+        <li class="menu-item"><span>Bengali</span></li>
+        <li class="menu-item"><span>Marathi</span></li>
+        <li class="menu-item"><span>Bhojpuri</span></li>
+-->
+      </ul>
+    </div>
+  </div>
+  <div id="wrapper">
+    <%= yield %>
+  </div>
 </body>
 </html>
