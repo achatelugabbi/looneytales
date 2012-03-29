@@ -37,8 +37,11 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 
 body {
-  background: url(black-background.png);
-  font-family: sans-serif;
+  background-color: #D4D6D7;
+/*  background: url(spotlight.png); */
+  background-position: center 0pt, center center;
+  background-repeat: repeat-y;
+  font: 13px Arial,Helvetica,sans-serif;
 }
 
 div#wrapper{
