@@ -30,6 +30,8 @@ Install Bundler
 Install all the other required gems in the Gemfile
   bundle install
 
+See the initial data:
+  rake db:seed
 
 Start Rails server:
   rails s
@@ -37,7 +39,6 @@ Start Rails server:
 
 Start Rails Console:
    rails c
-
 
 
 
