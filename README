@@ -1,3 +1,77 @@
+Instructions for installation on Mac:
+
+Download and install xcode:
+ http://itunes.apple.com/us/app/xcode/id497799835?mt=12
+ you can install it from the mac app store. (The downlaod is large-- takes a while to download)
+
+
+Brew Packages
+
+    sudo brew update
+    sudo brew install pkg-config
+    sudo brew install mongodb
+
+Install Git:
+http://help.github.com/mac-set-up-git/
+
+git clone https://raxramni@github.com/achatelugabbi/looneytales.git
+
+change directory to it.
+
+Install RVM:
+        http://rvm.beginrescueend.com/
+
+Install Ruby 1.9.3
+        Install via RVM. (should auttomatically install when you cd to the directory)
+
+Install Bundler
+  gem install bundler
+
+Install all the other required gems in the Gemfile
+  bundle install
+
+
+Start Rails server:
+  rails s
+
+
+Start Rails Console:
+   rails c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rails Documentation
+
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
