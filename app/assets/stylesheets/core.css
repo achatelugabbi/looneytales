@@ -4,7 +4,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 .menu-item{
   float:left;
   margin-right:1px;
-  height:40px;
+  height:80px;
   width:80px;
   list-style-type: none;
   color:#C0C0C0;
@@ -23,7 +23,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 }
 
 #header{
-  margin:0px;
+  margin-bottom:76px;
   height:100%;
   float: right;
 }
@@ -43,9 +43,12 @@ body {
 
 div#wrapper{
   clear:both;
+  margin-top:10px;
 }
 
 #disp-area{
+ margin: auto;
+ margin: auto;
  z-index:-1;
 }
 
@@ -64,14 +67,22 @@ div#wrapper{
 .disp-title{
   font-size: 28px;
   font-family:fantasy;
+  text-align:center;
   display: block;
   margin-left:auto;
   margin-right:auto;
   padding: 5px;
 }
 
+.disp-desc{
+  font-family: georgia;
+  font-size: 14px;
+  text-align: center;
+}
+
 .disp-img img{
   width: 100%;
+  padding-bottom: 5px;
   border-top-left-radius:8px;
   border-top-right-radius:8px;
 }
