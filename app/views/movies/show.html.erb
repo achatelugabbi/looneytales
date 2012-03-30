@@ -1,0 +1,21 @@
+<div id="view-wrapper">
+  <div id="title-block">
+    <span><%= @movie.title %></span>
+  </div>
+  <div id="video-block">
+    <object style="height: 390px; width: 640px">
+      <param name="movie" value="<%= @movie.link %>?version=3&feature=player_embedded">
+      <param name="allowFullScreen" value="true">
+      <param name="allowScriptAccess" value="always">
+      <embed src="<%= @movie.link %>?version=3&feature=player_embedded" type="application/x-shockwave-flash" allowfullscreen="true" 
+      allowScriptAccess="always" width="640" height="360">
+    </object> 
+  </div>
+  <div id="cast-block">
+    Cast: <%= @movie.cast.join(', ') %>
+  </div>
+  <div id="meta-data-block">
+  </div>
+  <div id="comments-block">
+  </div>
+</div>

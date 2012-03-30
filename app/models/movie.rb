@@ -45,6 +45,15 @@ class Movie
   validates_uniqueness_of :name_slug
   before_create :generate_name_slug, :populate_thumbnails
 
+  def title
+    return self.name
+  end
+
+  def link
+    return nil if self.video_ids.blank?
+    return Video.find(self.video_ids.first).link
+  end
+
   protected
   def generate_name_slug
     self.name_slug = self.name

@@ -1,0 +1,102 @@
+#!/usr/bin/env ruby
+
+require 'net/http'
+require 'open-uri'
+require 'nokogiri'
+
+class BMoviesCrawler 
+
+  def firstCrawl 
+    ## the set of appendables to the link to crawl the links by alphabets
+    alphaSet = ['inka'] #inka is for the movies starting with a non-alphabet
+    'b'.upto('z') do |alpha|
+      alphaSet << alpha
+    end
+    moviePageLinks = []
+    moviePageLinks.concat(pageLinksByAlphabet(''))  # to crawl movie starting with 'a'
+    alphaSet.each do |alpha|
+      moviePageLinks.concat(pageLinksByAlphabet('-'+alpha))
+    end
+    moviePageLinks.each do |link|
+      page = 'http://www.bharatmovies.com/hindi/watch/' + link
+      crawlBMPage(page) 
+    end
+  end
+
+
+  def pageLinksByAlphabet(alphaStr)
+    link = "http://www.bharatmovies.com/hindi/watch/movies"+alphaStr+".htm"
+    
+    http_response = Net::HTTP.get_response(URI.parse(link))  
+    if(http_response.kind_of?(Net::HTTPRedirection))  
+      new_url = http_response['Location']  
+      http_response = Net::HTTP.get_response(URI.parse(new_url))  
+    end 
+
+    moviePageLinks=[]
+    Nokogiri::HTML(http_response.body).css('div#L1 a','div#L2 a').map  { |link|  moviePageLinks<<link['href']}
+    moviePageLinks
+  end	
+
+  def searchNodes(start_node,link_set)
+      return start_node if start_node.nil?
+      check1 = start_node.name == 'div' && start_node[:id] == 'source' && start_node.next
+      link_set << "SOURCE_ENDS" if check1 && start_node.next.name == 'br' # for part grouping
+      check2 = check1 && start_node.next.name == 'div' && start_node.next['id'] == 'blueul'
+      link_set << "SOURCE_ENDS" if check2 && start_node.parent.next.nil? # for dailymotion part grouping
+      link_set << "SOURCE_ENDS" if check2 && start_node.next.next && start_node.next.next.name == 'br' # for youku part grouping
+      link_set << start_node['src'].to_s.strip if start_node.name == 'embed' # the actual link
+      start_node.children.each { |cnode| searchNodes(cnode,link_set) }
+      return link_set
+  end
+		
+
+  def crawlBMPage(page)
+    http_response = Net::HTTP.get_response(URI.parse(page))  
+    if(http_response.kind_of?(Net::HTTPRedirection))  
+      new_url = http_response['Location']  
+      http_response = Net::HTTP.get_response(URI.parse(new_url))  
+    end 
+
+    doc = Nokogiri::HTML(http_response.body)
+    titleArea = doc.css('div#vdesc').first.text
+    titleArea.strip!
+    title = ''
+    caststr = ''
+    title, caststr = titleArea.scan(/Watch (.*) movie online starring (.*)/)[0] # [0] beacuse .scan is wierdly returning an array inside an array
+    puts "Title: " + title
+
+    cast = caststr.strip.chomp.chomp('.').split(',')
+    puts "CAST: "
+    cast.each { |person| puts person.strip!}
+
+
+    puts "LINKS: "
+    #cmain_links = doc.css('div#cmain embed','div#cmain div#source').map {|link| link.attribute('src','source').to_s.strip}.uniq.delete_if {|link| link.empty?}
+    #doc.css('div#cmain embed','div#cmain div#source').map  do |link| 
+    #	puts link
+    #end
+    cmain_links =[]
+    start_node = doc.css('div#cmain').first
+    cmain_links =searchNodes(start_node,cmain_links)
+    cmain_links.each {|link| puts link}
+    #doc.css('div embed#src').map {|link| cmain_links<<link.to_s}
+    #doc.xpath("//embed").each {|embed| cmain_links<<embed['src'].to}#cmain_links << "#{embed['src']}"}
+#    cmain_links.each { |link| puts link}
+ #   cmain_links.each { |link| URI.parse(link).host}
+
+  #  puts "PARTS: "
+    
+
+#    doc.xpath('//div[starts-with(@id,"bmtab")]').each { |x| puts x['id']}
+
+
+    puts "--------------------------------------------------------------------------"
+
+  end
+
+end
+
+
+bm = BMoviesCrawler.new
+bm.firstCrawl
