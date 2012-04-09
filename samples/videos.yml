@@ -1,0 +1,333 @@
+--- &70277873326280 !ruby/object:Mongoid::Criteria
+klass: !ruby/class 'Video'
+serializers:
+  _type: !ruby/object:Mongoid::Fields::Internal::String
+    name: _type
+    options:
+      :default: &70277845304820 !ruby/object:Proc {}
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: *70277845304820
+    pre_processed: false
+  _id: !ruby/object:Mongoid::Fields::Internal::ObjectId
+    name: _id
+    options:
+      :default: &70277845302840 !ruby/object:Proc {}
+      :pre_processed: true
+      :type: !ruby/class 'BSON::ObjectId'
+    label: 
+    localize: 
+    default_val: *70277845302840
+    pre_processed: true
+  created_at: !ruby/object:Mongoid::Fields::Internal::Time
+    name: created_at
+    options:
+      :type: !ruby/class 'Time'
+    label: 
+    localize: 
+    default_val: 
+  updated_at: !ruby/object:Mongoid::Fields::Internal::Time
+    name: updated_at
+    options:
+      :type: !ruby/class 'Time'
+    label: 
+    localize: 
+    default_val: 
+  link: !ruby/object:Mongoid::Fields::Internal::String
+    name: link
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  title: !ruby/object:Mongoid::Fields::Internal::String
+    name: title
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  title_slug: !ruby/object:Mongoid::Fields::Internal::String
+    name: title_slug
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  desc: !ruby/object:Mongoid::Fields::Internal::String
+    name: desc
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  thumbnails: !ruby/object:Mongoid::Fields::Internal::Array
+    name: thumbnails
+    options:
+      :type: !ruby/class 'Array'
+      :default: &70277851215300 []
+    label: 
+    localize: 
+    default_val: *70277851215300
+    pre_processed: true
+  link_slug: !ruby/object:Mongoid::Fields::Internal::String
+    name: link_slug
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  language: !ruby/object:Mongoid::Fields::Internal::Integer
+    name: language
+    options:
+      :type: !ruby/class 'Integer'
+    label: 
+    localize: 
+    default_val: 
+  year: !ruby/object:Mongoid::Fields::Internal::Integer
+    name: year
+    options:
+      :type: !ruby/class 'Integer'
+    label: 
+    localize: 
+    default_val: 
+  orig_rel_date: !ruby/object:Mongoid::Fields::Internal::DateTime
+    name: orig_rel_date
+    options:
+      :type: !ruby/class 'DateTime'
+    label: 
+    localize: 
+    default_val: 
+  host: !ruby/object:Mongoid::Fields::Internal::String
+    name: host
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  host_video_id: !ruby/object:Mongoid::Fields::Internal::String
+    name: host_video_id
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  host_lang_str: !ruby/object:Mongoid::Fields::Internal::String
+    name: host_lang_str
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  host_credits: !ruby/object:Mongoid::Fields::Internal::Array
+    name: host_credits
+    options:
+      :type: !ruby/class 'Array'
+      :default: &70277851059120 []
+    label: 
+    localize: 
+    default_val: *70277851059120
+    pre_processed: true
+  host_aspect_ratio: !ruby/object:Mongoid::Fields::Internal::String
+    name: host_aspect_ratio
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  host_view_count: !ruby/object:Mongoid::Fields::Internal::Integer
+    name: host_view_count
+    options:
+      :type: !ruby/class 'Integer'
+    label: 
+    localize: 
+    default_val: 
+  host_rating: !ruby/object:Mongoid::Fields::Internal::Float
+    name: host_rating
+    options:
+      :type: !ruby/class 'Float'
+    label: 
+    localize: 
+    default_val: 
+  host_likes: !ruby/object:Mongoid::Fields::Internal::Integer
+    name: host_likes
+    options:
+      :type: !ruby/class 'Integer'
+    label: 
+    localize: 
+    default_val: 
+  host_dislikes: !ruby/object:Mongoid::Fields::Internal::Integer
+    name: host_dislikes
+    options:
+      :type: !ruby/class 'Integer'
+    label: 
+    localize: 
+    default_val: 
+  host_published: !ruby/object:Mongoid::Fields::Internal::DateTime
+    name: host_published
+    options:
+      :type: !ruby/class 'DateTime'
+    label: 
+    localize: 
+    default_val: 
+  host_updated: !ruby/object:Mongoid::Fields::Internal::DateTime
+    name: host_updated
+    options:
+      :type: !ruby/class 'DateTime'
+    label: 
+    localize: 
+    default_val: 
+  host_comment_count: !ruby/object:Mongoid::Fields::Internal::Integer
+    name: host_comment_count
+    options:
+      :type: !ruby/class 'Integer'
+    label: 
+    localize: 
+    default_val: 
+  host_ratings_count: !ruby/object:Mongoid::Fields::Internal::Integer
+    name: host_ratings_count
+    options:
+      :type: !ruby/class 'Integer'
+    label: 
+    localize: 
+    default_val: 
+  host_favorites_count: !ruby/object:Mongoid::Fields::Internal::Integer
+    name: host_favorites_count
+    options:
+      :type: !ruby/class 'Integer'
+    label: 
+    localize: 
+    default_val: 
+  host_author_name: !ruby/object:Mongoid::Fields::Internal::String
+    name: host_author_name
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  host_author_id: !ruby/object:Mongoid::Fields::Internal::String
+    name: host_author_id
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  host_author_uri: !ruby/object:Mongoid::Fields::Internal::String
+    name: host_author_uri
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  duration: !ruby/object:Mongoid::Fields::Internal::Float
+    name: duration
+    options:
+      :type: !ruby/class 'Float'
+    label: 
+    localize: 
+    default_val: 
+  keywords: !ruby/object:Mongoid::Fields::Internal::Array
+    name: keywords
+    options:
+      :type: !ruby/class 'Array'
+      :default: &70277851091800 []
+    label: 
+    localize: 
+    default_val: *70277851091800
+    pre_processed: true
+  is_3d: !ruby/object:Mongoid::Fields::Internal::Boolean
+    name: is_3d
+    options:
+      :type: !ruby/class 'Boolean'
+      :default: false
+    label: 
+    localize: 
+    default_val: false
+    pre_processed: false
+  is_hd: !ruby/object:Mongoid::Fields::Internal::Boolean
+    name: is_hd
+    options:
+      :type: !ruby/class 'Boolean'
+      :default: false
+    label: 
+    localize: 
+    default_val: false
+    pre_processed: false
+  paid_content: !ruby/object:Mongoid::Fields::Internal::Boolean
+    name: paid_content
+    options:
+      :type: !ruby/class 'Boolean'
+      :default: false
+    label: 
+    localize: 
+    default_val: false
+    pre_processed: false
+  price: !ruby/object:Mongoid::Fields::Internal::Float
+    name: price
+    options:
+      :type: !ruby/class 'Float'
+    label: 
+    localize: 
+    default_val: 
+  price_currency: !ruby/object:Mongoid::Fields::Internal::String
+    name: price_currency
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  license: !ruby/object:Mongoid::Fields::Internal::String
+    name: license
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  rating: !ruby/object:Mongoid::Fields::Internal::String
+    name: rating
+    options:
+      :type: !ruby/class 'String'
+    label: 
+    localize: 
+    default_val: 
+  genres: !ruby/object:Mongoid::Fields::Internal::Array
+    name: genres
+    options:
+      :type: !ruby/class 'Array'
+      :default: &70277871043360 []
+    label: 
+    localize: 
+    default_val: *70277871043360
+    pre_processed: true
+  is_movie: !ruby/object:Mongoid::Fields::Internal::Boolean
+    name: is_movie
+    options:
+      :type: !ruby/class 'Boolean'
+      :default: false
+    label: 
+    localize: 
+    default_val: false
+    pre_processed: false
+  is_movie_part: !ruby/object:Mongoid::Fields::Internal::Boolean
+    name: is_movie_part
+    options:
+      :type: !ruby/class 'Boolean'
+      :default: false
+    label: 
+    localize: 
+    default_val: false
+    pre_processed: false
+aliases:
+  id: _id
+selector: !ruby/hash:Origin::Selector {}
+options: !ruby/hash:Origin::Options {}
+inclusions: []
+scoping_options:
+- 
+- 
+documents: []
+context: !ruby/object:Mongoid::Contexts::Mongo
+  criteria: *70277873326280
+strategy: 
+negating: 

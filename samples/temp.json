@@ -1,0 +1,376 @@
+{
+    "version": "1.0",
+    "encoding": "UTF-8",
+    "entry": {
+        "xmlns": "http://www.w3.org/2005/Atom",
+        "xmlns$media": "http://search.yahoo.com/mrss/",
+        "xmlns$gd": "http://schemas.google.com/g/2005",
+        "xmlns$yt": "http://gdata.youtube.com/schemas/2007",
+        "gd$etag": "W/\"AkMESX47eCp7I2A9WhVQFkU.\"",
+        "id": {
+            "$t": "tag:youtube.com,2008:video:kpkukYksoVw"
+        },
+        "published": {
+            "$t": "2011-11-18T10:20:17.000Z"
+        },
+        "updated": {
+            "$t": "2012-04-06T05:00:08.000Z"
+        },
+        "category": [
+            {
+                "scheme": "http://schemas.google.com/g/2005#kind",
+                "term": "http://gdata.youtube.com/schemas/2007#video"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/categories.cat",
+                "term": "Movies",
+                "label": "Movies"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "movie"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "aaj ka goondaraaj"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "goondaraj"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "full movie"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "free streaming"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "download"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "chiranjeevi"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "meenakshi seshadhri"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "raj babbar"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "satish shah"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "prem chopra"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "director"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "ravi raja"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "bollywood"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "action movie"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "music"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "indian"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "hindi"
+            },
+            {
+                "scheme": "http://gdata.youtube.com/schemas/2007/keywords.cat",
+                "term": "film"
+            }
+        ],
+        "title": {
+            "$t": "Aaj Ka Goondaraaj"
+        },
+        "link": [
+            {
+                "rel": "alternate",
+                "type": "text/html",
+                "href": "http://www.youtube.com/watch?v=kpkukYksoVw&feature=youtube_gdata"
+            },
+            {
+                "rel": "http://gdata.youtube.com/schemas/2007#video.responses",
+                "type": "application/atom+xml",
+                "href": "http://gdata.youtube.com/feeds/api/videos/kpkukYksoVw/responses?v=2"
+            },
+            {
+                "rel": "http://gdata.youtube.com/schemas/2007#video.related",
+                "type": "application/atom+xml",
+                "href": "http://gdata.youtube.com/feeds/api/videos/kpkukYksoVw/related?v=2"
+            },
+            {
+                "rel": "http://gdata.youtube.com/schemas/2007#video.trailers",
+                "type": "application/atom+xml",
+                "href": "http://gdata.youtube.com/feeds/api/videos/kpkukYksoVw/trailers?v=2"
+            },
+            {
+                "rel": "http://gdata.youtube.com/schemas/2007#mobile",
+                "type": "text/html",
+                "href": "http://m.youtube.com/details?v=kpkukYksoVw"
+            },
+            {
+                "rel": "self",
+                "type": "application/atom+xml",
+                "href": "http://gdata.youtube.com/feeds/api/videos/kpkukYksoVw?v=2"
+            }
+        ],
+        "author": [
+            {
+                "name": {
+                    "$t": "UltraMovieParlour"
+                },
+                "uri": {
+                    "$t": "http://gdata.youtube.com/feeds/api/users/UltraMovieParlour"
+                },
+                "yt$userId": {
+                    "$t": "YauDsl-rswjQGpA0_-Z9Pw"
+                }
+            }
+        ],
+        "yt$accessControl": [
+            {
+                "action": "comment",
+                "permission": "moderated"
+            },
+            {
+                "action": "commentVote",
+                "permission": "allowed"
+            },
+            {
+                "action": "videoRespond",
+                "permission": "moderated"
+            },
+            {
+                "action": "rate",
+                "permission": "denied"
+            },
+            {
+                "action": "embed",
+                "permission": "denied"
+            },
+            {
+                "action": "list",
+                "permission": "allowed"
+            },
+            {
+                "action": "autoPlay",
+                "permission": "allowed"
+            },
+            {
+                "action": "syndicate",
+                "permission": "allowed"
+            }
+        ],
+        "yt$availability": {
+            "start": "2012-01-20T12:19:27.000Z",
+            "end": "2037-12-31T12:00:00.000Z"
+        },
+        "gd$comments": {
+            "gd$feedLink": {
+                "rel": "http://gdata.youtube.com/schemas/2007#comments",
+                "href": "http://gdata.youtube.com/feeds/api/videos/kpkukYksoVw/comments?v=2",
+                "countHint": 7
+            }
+        },
+        "yt$firstReleased": {
+            "$t": "1992-02-20T08:00:00.000Z"
+        },
+        "yt$hd": {},
+        "media$group": {
+            "media$category": [
+                {
+                    "$t": "Movies",
+                    "label": "Movies",
+                    "scheme": "http://gdata.youtube.com/schemas/2007/categories.cat"
+                },
+                {
+                    "$t": "1",
+                    "scheme": "http://gdata.youtube.com/schemas/2007/releasemediums.cat"
+                },
+                {
+                    "$t": "1",
+                    "scheme": "http://gdata.youtube.com/schemas/2007/mediatypes.cat"
+                },
+                {
+                    "$t": "18",
+                    "scheme": "http://gdata.youtube.com/schemas/2007/moviegenres.cat"
+                },
+                {
+                    "$t": "1",
+                    "scheme": "http://gdata.youtube.com/schemas/2007/moviegenres.cat"
+                },
+                {
+                    "$t": "8",
+                    "scheme": "http://gdata.youtube.com/schemas/2007/moviegenres.cat"
+                }
+            ],
+            "media$credit": [
+                {
+                    "$t": "ultramovieparlour",
+                    "role": "uploader",
+                    "scheme": "urn:youtube",
+                    "yt$display": "UltraMovieParlour",
+                    "yt$type": "partner"
+                },
+                {
+                    "$t": "N N Sippy",
+                    "role": "Producer",
+                    "scheme": "urn:ebu"
+                },
+                {
+                    "$t": "Ravi Raja",
+                    "role": "Director",
+                    "scheme": "urn:ebu"
+                },
+                {
+                    "$t": "Anees Bazmee",
+                    "role": "Writer",
+                    "scheme": "urn:ebu"
+                },
+                {
+                    "$t": "Chiranjeevi",
+                    "role": "Actor",
+                    "scheme": "urn:ebu"
+                },
+                {
+                    "$t": "Meenakshi Seshadhri",
+                    "role": "Actor",
+                    "scheme": "urn:ebu"
+                },
+                {
+                    "$t": "Raj Babbar",
+                    "role": "Actor",
+                    "scheme": "urn:ebu"
+                },
+                {
+                    "$t": "Kunika",
+                    "role": "Actor",
+                    "scheme": "urn:ebu"
+                },
+                {
+                    "$t": "Satish Shah",
+                    "role": "Actor",
+                    "scheme": "urn:ebu"
+                },
+                {
+                    "$t": "Prem Chopra",
+                    "role": "Actor",
+                    "scheme": "urn:ebu"
+                }
+            ],
+            "media$description": {
+                "$t": "Super Hit action movie Aaj Ka Goondaraaj (1992)\r\nSynopsis :  Raja though being righteous, honest, tough - a daredevil and educated was unemployed young man.With no work on hand he squanders his time with his four friends. This naturally upsets his family members-his dadi and elder brothers Amar and Ravi who care and worry for him. Constantly troubled by lack of money the family had lots of problems. Ravi's pending IAS examination was the core problem they were facing. To raise money for Ravi's examination, Raja and his friends in desperation take up a job. A job that entailed getting rid of a tenant who had illegally settled in a house. Raja had an easy time getting rid of Shalu. But from then on, Shalu creates hell for him and moves into his house and life permanently. Tejpal and Nagpal were power brokers. The duo i.e. Tejpal and Nagpal were very influential and intimidating. They succeed in getting Ritu married to Ravi, now an IAS officer, on the threshold of becoming a Collector. A perfect move thought the villains - Saxena's sister married to Raja's brother. Raja revolts but is cornered. He has many clashes with the duo. In one of these clashes Raja's friends and eldest brother Amar are murdered. All is lost until Raja and Ravi discover the truth about Tejpal and Nagpal. Raja and Ravi decide to end the Gundaraj.",
+                "type": "plain"
+            },
+            "media$keywords": {
+                "$t": "movie, aaj ka goondaraaj, goondaraj, full movie, free streaming, download, chiranjeevi, meenakshi seshadhri, raj babbar, satish shah, prem chopra, director, ravi raja, bollywood, action movie, music, indian, hindi, film"
+            },
+            "media$license": {
+                "$t": "youtube",
+                "type": "text/html",
+                "href": "http://www.youtube.com/t/terms"
+            },
+            "media$player": {
+                "url": "http://www.youtube.com/watch?v=kpkukYksoVw&feature=youtube_gdata_player"
+            },
+            "media$thumbnail": [
+                {
+                    "url": "http://i.ytimg.com/vi/kpkukYksoVw/default.jpg",
+                    "height": 90,
+                    "width": 120,
+                    "time": "01:20:06",
+                    "yt$name": "default"
+                },
+                {
+                    "url": "http://i.ytimg.com/vi/kpkukYksoVw/hqdefault.jpg",
+                    "height": 360,
+                    "width": 480,
+                    "yt$name": "hqdefault"
+                },
+                {
+                    "url": "http://i.ytimg.com/vi/kpkukYksoVw/1.jpg",
+                    "height": 90,
+                    "width": 120,
+                    "time": "00:40:03",
+                    "yt$name": "start"
+                },
+                {
+                    "url": "http://i.ytimg.com/vi/kpkukYksoVw/2.jpg",
+                    "height": 90,
+                    "width": 120,
+                    "time": "01:20:06",
+                    "yt$name": "middle"
+                },
+                {
+                    "url": "http://i.ytimg.com/vi/kpkukYksoVw/3.jpg",
+                    "height": 90,
+                    "width": 120,
+                    "time": "02:00:09",
+                    "yt$name": "end"
+                },
+                {
+                    "url": "http://i.ytimg.com/vi/kpkukYksoVw/movieposter.jpg",
+                    "height": 243,
+                    "width": 169,
+                    "yt$name": "poster"
+                }
+            ],
+            "media$title": {
+                "$t": "Aaj Ka Goondaraaj",
+                "type": "plain"
+            },
+            "yt$aspectRatio": {
+                "$t": "widescreen"
+            },
+            "yt$duration": {
+                "seconds": "9612"
+            },
+            "yt$uploaded": {
+                "$t": "2011-11-18T10:20:17.000Z"
+            },
+            "yt$videoid": {
+                "$t": "kpkukYksoVw"
+            }
+        },
+        "yt$noembed": {},
+        "gd$rating": {
+            "average": 3.7692308,
+            "max": 5,
+            "min": 1,
+            "numRaters": 13,
+            "rel": "http://schemas.google.com/g/2005#overall"
+        },
+        "yt$statistics": {
+            "favoriteCount": "46",
+            "viewCount": "43563"
+        },
+        "yt$rating": {
+            "numDislikes": "4",
+            "numLikes": "9"
+        }
+    }
+}

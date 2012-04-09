@@ -3,30 +3,157 @@
 require 'net/http'
 require 'open-uri'
 require 'nokogiri'
+require 'json'
+require File.expand_path('../../config/environment', __FILE__)
+require Rails.root + './lib/youtube_json'
 
-class BMoviesCrawler 
+#require 'mongo'
+
+
+class BMoviesCrawler
+ 
+  def initiatlize
+  end
+
 
   def firstCrawl 
+
+    #languages = ['telugu', 'hindi', 'tamil', 'malayalam', 'bengali', 'kannada', 'marathi']
+    languages = ["telugu", "tamil", "hindi", "malayalam", "kannada", "bengali", "marathi", "punjabi"]
+    languages = ["kannada", "bengali", "marathi", "punjabi"]
+    #languages = Video::LANG_MAP.keys()
     ## the set of appendables to the link to crawl the links by alphabets
-    alphaSet = ['inka'] #inka is for the movies starting with a non-alphabet
-    'b'.upto('z') do |alpha|
-      alphaSet << alpha
-    end
-    moviePageLinks = []
-    moviePageLinks.concat(pageLinksByAlphabet(''))  # to crawl movie starting with 'a'
-    alphaSet.each do |alpha|
-      moviePageLinks.concat(pageLinksByAlphabet('-'+alpha))
-    end
-    moviePageLinks.each do |link|
-      page = 'http://www.bharatmovies.com/hindi/watch/' + link
-      crawlBMPage(page) 
+    alphabet_set = ['anki'] #inka is for the movies starting with a non-alphabet
+    'b'.upto('z') { |alphabet| alphabet_set << alphabet}
+   
+    languages.each do |language|
+      puts "Crawling #{language} movies ...."
+      puts "####################################################################################################################"
+      moviePageLinks = []
+      moviePageLinks.concat(pageLinksByAlphabet(language,''))  # to crawl movie starting with 'a'
+      alphabet_set.each { |alphabet| moviePageLinks.concat(pageLinksByAlphabet(language,'-'+alphabet))} if language!= 'marathi'
+      skip_count = 0
+
+      moviePageLinks.each do |link|
+        page = 'http://www.bharatmovies.com/' + language + '/movies/' + link['href']
+        year = nil
+        year = link['year'].to_i unless link['year'].blank?
+        movie_doc = crawlBMPage(page,year, language)
+        movie_doc["cast"].collect { |c| c.strip!}
+        #puts movie_doc.inspect
+        next if movie_doc["sources"].blank? || movie_doc["sources"].first.blank?
+        puts "more than one videos for the movie" if (movie_doc["sources"].count >1 || movie_doc["sources"].first.count > 1)
+        count = Movie.where(:title => movie_doc['title'], :language => Video::LANG_MAP[language], :year => year).count
+        puts "#{movie_doc['title']} -- #{year} already exists" if count > 0
+        next if count > 0
+        movie_id = youtube_id_parser(movie_doc["sources"].first.first) unless movie_doc["sources"].first.empty?
+        video = create_video(movie_id, language)
+        skip_count = skip_count + 1 if video.nil?
+        if skip_count> 10
+          #skipped more than 10 consequent times
+          puts "skipped for more than 10 times when crawling for a video! Hence breaking"
+          exit
+        end 
+        next if video.nil?
+        puts "VIDEO: #{video.title} - #{video.year}  - #{video.id} created!"
+        skip_count = 0
+        movie = create_youtube_movie(video, movie_doc['title'], movie_doc['year'], movie_doc['cast'])
+        puts "MOVIE: #{movie.title} - #{movie.year}  - #{movie.id} created!" unless movie.nil?
+      end
     end
   end
 
 
-  def pageLinksByAlphabet(alphaStr)
-    link = "http://www.bharatmovies.com/hindi/watch/movies"+alphaStr+".htm"
-    
+  def create_youtube_movie(video, title, year, cast)
+    return nil if video.blank?
+    year = video.year if year.blank?
+    movie_data = {
+                   :video_ids => [video.id],
+                   :title => title,
+                   :year => year,
+                   :cast => cast, 
+                   :desc => video.desc,
+                   :thumbnails => video.thumbnails,
+                   :language => video.language,
+                   :duration => video.duration,
+                   :keywords => video.keywords, 
+                   :is_3d => video.is_3d,
+                   :is_hd => video.is_hd,
+                   :paid_content => video.paid_content,
+                   :price => video.price,
+                   :price_currency => video.price_currency,
+                   :license => video.license,
+                   :genres => video.genres
+                  }
+     movie = nil
+     begin
+       movie = Movie.safely.create!(movie_data)
+     rescue => e
+       puts "error creating movie: #{movie_data[:title]}"
+       puts e.backtrace
+       puts "gdata:"
+       puts movie_data
+       return nil
+     end
+     return movie
+  end
+
+
+
+
+
+  def create_video(video_id, language)
+#    comments = Youtube::Video.find_custom(movie_id).get(:comments)
+#    puts comments.entry[0].link[2].href
+     video = {}
+     begin
+       video = get_video_info(video_id)
+     rescue => e
+       puts "Error Retrieveing #{video_id} : #{e}"
+       return nil
+     end
+     lang = Video::LANG_MAP[language]
+     video_data =  YoutubeJson.video_json(video, lang)
+     return nil if video_data.nil?
+     v = nil
+     begin
+      v = Video.where(:link => video_data[:link]).first unless video_data[:link].blank?
+      return v unless v.blank?
+      v = Video.safely.create!(video_data)
+     rescue => e
+       puts "Error creating link: #{video_data[:link]}"
+       puts e.backtrace
+       return nil
+     end
+     return v
+  end
+
+  def get_video_info(id)
+    k = 0.65 + rand()
+    sleep(k)
+    puts " "
+    puts "after #{k} secs ...."
+    link = "http://gdata.youtube.com/feeds/api/videos/#{id}?v=2&alt=json"
+    puts "--------------------------------------------------------------------------------"
+    puts link
+    resp = Net::HTTP.get_response(URI.parse(link))
+    raise "Error retreiving video link" unless Net::HTTPSuccess
+    data = resp.body
+    result = JSON.parse(data)
+
+    # if the hash has 'Error' as a key, we raise an error
+    if result.has_key? 'Error'
+      raise "web service error"
+    end
+    return result
+  end
+
+
+
+
+  def pageLinksByAlphabet(language,alphaStr)
+    link = "http://www.bharatmovies.com/" + language + "/movies/list"+alphaStr+".htm"
+     
     http_response = Net::HTTP.get_response(URI.parse(link))  
     if(http_response.kind_of?(Net::HTTPRedirection))  
       new_url = http_response['Location']  
@@ -34,7 +161,19 @@ class BMoviesCrawler
     end 
 
     moviePageLinks=[]
-    Nokogiri::HTML(http_response.body).css('div#L1 a','div#L2 a').map  { |link|  moviePageLinks<<link['href']}
+    Nokogiri::HTML(http_response.body).css('div#L1 a','div#L2 a').map do |link|
+        linktext = link.text.strip
+	linktext = linktext.to_s
+	year = linktext.match(/\([\d ]*\)/)[0]
+	year = year.strip
+	year = year[1..-2]
+	year = year.to_i
+	year = nil if year ==0
+	set = {}
+	set['year']  = year
+	set['href'] = link['href']
+	moviePageLinks<< set
+    end
     moviePageLinks
   end	
 
@@ -51,7 +190,8 @@ class BMoviesCrawler
   end
 		
 
-  def crawlBMPage(page)
+  def crawlBMPage(page, year, language)
+    movie_doc = {}
     http_response = Net::HTTP.get_response(URI.parse(page))  
     if(http_response.kind_of?(Net::HTTPRedirection))  
       new_url = http_response['Location']  
@@ -63,26 +203,46 @@ class BMoviesCrawler
     titleArea.strip!
     title = ''
     caststr = ''
-    title, caststr = titleArea.scan(/Watch (.*) movie online starring (.*)/)[0] # [0] beacuse .scan is wierdly returning an array inside an array
-    puts "Title: " + title
-
+    title, caststr = titleArea.scan(/Watch (.*) movie\. Cast: (.*)/)[0] # [0] beacuse .scan is wierdly returning an array inside an array
+   
+    
+   # puts "Title: #{title}"
+    puts "No title found in page -- #{page}" if (title.nil? || title == '')
+   # puts "Year: #{year}" 
+    movie_doc['title']=title.to_s.strip.chomp
+    movie_doc['year']=year
+    movie_doc['language']=language
     cast = caststr.strip.chomp.chomp('.').split(',')
-    puts "CAST: "
-    cast.each { |person| puts person.strip!}
+    #puts "CAST: "
+    cast_set = []
+    cast.each { |person| cast_set << person} 
+    #puts cast_set
+    movie_doc['cast'] = cast_set
 
-
-    puts "LINKS: "
-    #cmain_links = doc.css('div#cmain embed','div#cmain div#source').map {|link| link.attribute('src','source').to_s.strip}.uniq.delete_if {|link| link.empty?}
-    #doc.css('div#cmain embed','div#cmain div#source').map  do |link| 
-    #	puts link
-    #end
+    #puts "LINKS: "
+    #cmain_links = doc.css('div#cmain embed').map {|link| link.attribute('src').to_s.strip}.uniq.delete_if {|link| link.empty?}
     cmain_links =[]
-    start_node = doc.css('div#cmain').first
-    cmain_links =searchNodes(start_node,cmain_links)
-    cmain_links.each {|link| puts link}
-    #doc.css('div embed#src').map {|link| cmain_links<<link.to_s}
-    #doc.xpath("//embed").each {|embed| cmain_links<<embed['src'].to}#cmain_links << "#{embed['src']}"}
-#    cmain_links.each { |link| puts link}
+    start_node = doc.css('div#vidcontainer').first
+    cmain_links = searchNodes(start_node,cmain_links)
+    #cmain_links.each {|link| puts link}
+
+
+    sources_set = []
+    links_set = []
+    for i in 0 .. cmain_links.size-1
+      if cmain_links[i] == "SOURCE_ENDS"
+          sources_set << links_set if links_set.size!=0
+	  links_set = []
+	  next
+      end
+      links_set << cmain_links[i]
+    end 
+    sources_set << links_set if links_set.size!=0
+      
+    #sources_set.each {|set| set.each { |link| puts link}; puts "-----END OF SOURCE---"}     
+    
+    movie_doc['sources'] = sources_set
+ #    cmain_links.each { |link| puts link}
  #   cmain_links.each { |link| URI.parse(link).host}
 
   #  puts "PARTS: "
@@ -91,8 +251,16 @@ class BMoviesCrawler
 #    doc.xpath('//div[starts-with(@id,"bmtab")]').each { |x| puts x['id']}
 
 
-    puts "--------------------------------------------------------------------------"
+   # puts "--------------------------------------------------------------------------"
+    movie_doc
+  end
 
+
+  def youtube_id_parser(link)
+    return nil if link.nil? || link ==''
+    uri = URI(link)
+    return uri.path.split('&')[0][3..-1]
+    return uri.path.match(/^\/.\/(.*)/)[0]
   end
 
 end

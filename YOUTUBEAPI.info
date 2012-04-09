@@ -1,0 +1,52 @@
+
+
+Most important ruby guide:
+http://www.quarkruby.com/ruby
+
+ruby google api info:
+http://code.google.com/apis/gdata/articles/using_ruby.html
+
+
+rails video info retrieval:
+http://code.google.com/apis/gdata/articles/gdata_on_rails.html
+
+
+ruby github
+https://github.com/tokumine/GData
+
+
+php/python video info retrieval:
+https://developers.google.com/youtube/2.0/developers_guide_php
+
+sample link to get info for a video in json form:
+https://gdata.youtube.com/feeds/api/videos/DyGDLgohido?v=2&alt=json
+
+
+youtube code in different languages:
+https://developers.google.com/youtube/code
+
+single link info retrieval:
+https://developers.google.com/youtube/2.0/developers_guide_protocol_video_entries
+
+parameter information:
+https://developers.google.com/youtube/2.0/developers_guide_protocol
+
+
+
+
+youtube id parser:
+-------------------------
+def parse_youtube url
+   regex = /^(?:http:\/\/)?(?:www\.)?\w*\.\w*\/(?:watch\?v=)?((?:p\/)?[\w\-]+)/
+   url.match(regex)[1]
+end
+
+urls = %w[http://youtu.be/sGE4HMvDe-Q 
+          http://www.youtube.com/watch?v=Lp7E973zozc&feature=relmfu
+          http://www.youtube.com/p/A0C3C1D163BE880A?hl=en_US&fs=1]
+
+urls.each {|url| puts parse_youtube url }
+# sGE4HMvDe-Q
+# Lp7E973zozc
+# p/A0C3C1D163BE880A
+

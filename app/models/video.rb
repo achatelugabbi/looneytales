@@ -2,6 +2,8 @@ class Video
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  LANG_MAP = {"hindi" => 1, "telugu" => 2, "tamil" => 3, "malayalam" => 4, "kannada" => 5, "bengali" => 6,  "marathi" => 7, "punjabi" => 8}
+
   field :link, :type => String
   field :title, :type => String
   field :title_slug, :type => String
@@ -9,17 +11,24 @@ class Video
   field :thumbnails, :type => Array, :default => []  #elements of type{:name => '', :url => '', :height => '', :width=> ''.,
   field :link_slug, :type => String
   field :language, :type => Integer # 1) Hindi 2) Telugu 3) Tamil 4)Malayalam 5) Bengali 6) Marathi 7) Punjabi
+  field :year, :type => Integer
+  field :orig_rel_date, :type => DateTime
   field :host, :type => String
-  field :host_videoid, :type => String
+  field :host_video_id, :type => String
   field :host_lang_str, :type => String
-  field :host_viewCount, :type => Integer
+  field :host_credits, :type => Array, :default => []
+  field :host_aspect_ratio, :type => String
+  field :host_view_count, :type => Integer
   field :host_rating, :type => Float
   field :host_likes, :type => Integer
   field :host_dislikes, :type => Integer
   field :host_published, :type => DateTime
-  field :host_commentCount, :type => Integer
-  field :host_rater_count, :type => Integer
-  field :host_author, :type => String
+  field :host_updated, :type => DateTime
+  field :host_comment_count, :type => Integer
+  field :host_ratings_count, :type => Integer
+  field :host_favorites_count, :type => Integer
+  field :host_author_name, :type => String
+  field :host_author_id, :type => String
   field :host_author_uri, :type => String
   field :duration, :type => Float
   field :keywords, :type => Array, :default => []
@@ -30,8 +39,8 @@ class Video
   field :price_currency, :type => String
   field :license, :type => String
 
-  field :media_rating, :type => String
-  field :genre, :type => Integer
+  field :rating, :type => String
+  field :genres, :type => Array, :default => []
 
   field :is_movie, :type => Boolean, :default => false
   field :is_movie_part, :type => Boolean, :default => false
@@ -57,8 +66,9 @@ class Video
     19 – Nigerian Cinema
 =end
 
-  validates_uniqueness_of :link, :link_slug
-  before_create :generate_slugs
+  validates_uniqueness_of :link
+  validates_uniqueness_of :link_slug
+  before_save :generate_slugs
 
   protected
   def generate_slugs

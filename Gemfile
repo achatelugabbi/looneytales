@@ -38,6 +38,9 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 #gem 'fog'
 gem 'mini_magick'
 
+gem 'activeresource'
+
+gem 'json'
 
 group :development do
   gem 'rails-dev-tweaks', '~> 0.6.1'

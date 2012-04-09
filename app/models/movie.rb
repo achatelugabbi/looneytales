@@ -3,10 +3,10 @@ class Movie
   include Mongoid::Timestamps
 
   field :video_ids, :type => Array, :default => []
-  field :name, :type => String
-  field :year, :type => String
+  field :title, :type => String
+  field :year, :type => Integer
   field :cast, :type => Array, :default => []
-  field :name_slug, :type => String
+  field :title_slug, :type => String
   field :desc, :type => String
   field :thumbnails, :type => Array, :default => []  #elements of type{:name => '', :url => '', :height => '', :width=> ''.,
   field :link_slug, :type => String
@@ -20,7 +20,7 @@ class Movie
   field :price_currency, :type => String
   field :license, :type => String
 
-  field :genre, :type => Integer
+  field :genres, :type => Array, :default => []
 =begin
   Genres:
     1 – Action & Adventure
@@ -41,13 +41,12 @@ class Movie
     19 – Nigerian Cinema
 =end
 
-  validates_presence_of :name
-  validates_uniqueness_of :name_slug
-  before_create :generate_name_slug, :populate_thumbnails
+  validates_presence_of :title
+  validates_uniqueness_of :title_slug
+  before_save :generate_title_slug
+  before_save :make_conversions
+#, :populate_thumbnails
 
-  def title
-    return self.name
-  end
 
   def link
     return nil if self.video_ids.blank?
@@ -55,16 +54,26 @@ class Movie
   end
 
   protected
-  def generate_name_slug
-    self.name_slug = self.name
-    self.name_slug+= self.year if self.year
-    self.name_slug = self.name_slug.parameterize
+  def generate_title_slug
+    self.title_slug = self.title
+    self.title_slug+= "#{self.year}" if self.year
+    self.title_slug = self.title_slug.parameterize
   end
 
   def populate_thumbnails
+    thumbnails = []
     self.video_ids.each do |v|
       video = Video.find(v)
-      video.thumbnails.each { |t| self.thumbnails << t}
+      video.thumbnails.each { |t| thumbnails << t} unless video.nil?
+    end
+    self.thumbnails = thumbnails
+  end
+
+  def make_conversions
+    begin
+      self.year = self.year.to_i unless self.year.blank?
+    rescue
+      self.year = nil
     end
   end
 end
