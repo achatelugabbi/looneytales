@@ -2,10 +2,7 @@ class MoviesController < ApplicationController
   before_filter :find_movie, :only => [:edit,:update,:destroy, :show]
 
   def index
-    @movies = Movie.all.to_a
-    k = []
-    60.times { @movies.each {|movie| k<< movie}}
-    @movies = k
+    @movies = Movie.where(:language => 2).order_by(:genres.asc).limit(100)
   end
 
   

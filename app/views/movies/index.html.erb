@@ -5,9 +5,9 @@
           <img src='<%= movie.thumbnails.first['url'] if (movie.thumbnails && !movie.thumbnails.empty? && movie.thumbnails.first['url'])%>'/> 
         </div>
         <div class='disp-title'>
-          <a href="<%= "http://localhost:3000"+movie_path(movie.id) %>"><%= movie.name %></a>
+          <a href="<%= "http://localhost:3000"+movie_path(movie.id) %>"><%= movie.title %></a>
         </div>
-        <div class='disp-desc'> <%= truncate(movie.desc, :length => Random.rand(200)) %> </div>
+        <div class='disp-desc'> <%= movie.desc %> </div>
       </div>
     <% end %>
   </div>
