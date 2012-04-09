@@ -1,14 +1,27 @@
 #!/usr/bin/env ruby
 
 require 'yaml'
+require 'json'
 require File.expand_path('../../config/environment', __FILE__)
 
-movies = Movie.all.to_yaml
-videos = Video.all.to_yaml
+#movies = Movie.all.to_yaml
+#videos = Video.all.to_yaml
 
-movies_file = "#{Rails.root}/samples/movies.yml"
-videos_file = "#{Rails.root}/samples/videos.yml"
+movies_json = Movie.all.to_json
+videos_json = Video.all.to_json
 
-File.open(movies_file, 'w') {|f| f.write(movies)}
 
-File.open(videos_file, 'w') {|f| f.write(videos)}
+#movies_file = "#{Rails.root}/samples/movies.yml"
+#videos_file = "#{Rails.root}/samples/videos.yml"
+movies_json_file = "#{Rails.root}/samples/movies.json"
+videos_json_file = "#{Rails.root}/samples/videos.json"
+
+
+#File.open(videos_file, 'w') {|f| f.write(videos)}
+
+#File.open(movies_file, 'w') {|f| f.write(movies)}
+
+
+File.open(videos_json_file, 'w') {|f| f.write(videos_json)}
+
+File.open(movies_json_file, 'w') {|f| f.write(movies_json)}
