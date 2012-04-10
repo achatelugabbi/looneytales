@@ -1,0 +1,98 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+*/
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+
+.menu-item{
+  float:left;
+  margin-right:1px;
+  height:80px;
+  width:80px;
+  list-style-type: none;
+  color:#C0C0C0;
+  font-family: arial;
+  background-color:#000000;
+  z-index:1;
+  position: relative;
+}
+
+.menu-item span{
+  display: block;
+  position: absolute;
+  text-align:center;
+  bottom: 0;
+  width: 100%
+}
+
+#header{
+  margin-bottom:76px;
+  height:100%;
+  float: right;
+}
+
+.menu-container{
+  margin-left: 5px;
+  margin-right: 50px;
+  height:100%;
+  width:100%
+}
+
+
+body {
+  background-color: #D4D6D7;
+/*  background: url(spotlight.png); */
+  background-position: center 0pt, center center;
+  background-repeat: repeat-y;
+  font: 13px Arial,Helvetica,sans-serif;
+}
+
+div#wrapper{
+  clear:both;
+  margin-top:10px;
+}
+
+#disp-area{
+ margin: auto;
+ margin: auto;
+ z-index:-1;
+}
+
+.disp-unit{
+  width: 260px;
+  margin:10px;
+  clear:both;
+  background: url(title-background.png);
+  font-family:helvetica,arial,sans-serif; 
+  font-color:#292A2B;
+  font-size:15px;
+  overflow: hidden;
+  border-radius:8px;
+}
+
+.disp-title{
+  font-size: 28px;
+  font-family:fantasy;
+  text-align:center;
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+  padding: 5px;
+}
+
+.disp-desc{
+  font-family: georgia;
+  font-size: 12px;
+  padding: 12px;
+}
+
+.disp-img img{
+  width: 100%;
+  padding-bottom: 5px;
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+}
+
