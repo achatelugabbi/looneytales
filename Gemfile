@@ -42,7 +42,13 @@ gem 'activeresource'
 
 gem 'json'
 
+gem "heroku" 
+
+
 group :development do
   gem 'rails-dev-tweaks', '~> 0.6.1'
 end
 
+group :production do
+  gem 'thin'
+end
