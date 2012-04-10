@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_filter :find_movie, :only => [:edit,:update,:destroy, :show]
 
   def index
-    @movies = Movie.where(:language => 2).order_by(:genres.asc).limit(30)
+    @movies = Movie.where(:language => 2).order_by(:genres.asc).limit(100)
   end
 
   

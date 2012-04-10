@@ -19,8 +19,13 @@ videos_json_file = File.read "#{Rails.root}/samples/videos.json"
 videos_json = JSON.parse(videos_json_file)
 
 videos_json.each do |v| 
-  Video.safely.create!(v)
-  puts "created #{v["title"]}"
+  begin
+    Video.safely.create!(v)
+    puts "created video #{v["title"]}"
+  rescue => e
+    puts "Error Creating Video: #{v['title']}"
+    puts e
+  end
 end
 
 puts "loading videos json file"
@@ -30,8 +35,13 @@ movies_json = JSON.parse(movies_json_file)
 
 
 movies_json.each do |m| 
-  Movie.safely.create!(m)
-  puts "created #{m["title"]}"
+  begin
+    Movie.safely.create!(m)
+    puts "created movie #{m["title"]}"
+  rescue => e
+    puts "Error Creating Movie: #{m['title']}"
+    puts e
+  end
 end
 
 =begin

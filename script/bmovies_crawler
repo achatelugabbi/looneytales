@@ -20,7 +20,6 @@ class BMoviesCrawler
 
     #languages = ['telugu', 'hindi', 'tamil', 'malayalam', 'bengali', 'kannada', 'marathi']
     languages = ["telugu", "tamil", "hindi", "malayalam", "kannada", "bengali", "marathi", "punjabi"]
-    languages = ["kannada", "bengali", "marathi", "punjabi"]
     #languages = Video::LANG_MAP.keys()
     ## the set of appendables to the link to crawl the links by alphabets
     alphabet_set = ['anki'] #inka is for the movies starting with a non-alphabet
