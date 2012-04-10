@@ -55,9 +55,21 @@ class Movie
 
   protected
   def generate_title_slug
-    self.title_slug = self.title
-    self.title_slug+= "#{self.year}" if self.year
-    self.title_slug = self.title_slug.parameterize
+    title_slug = self.title
+    title_slug+= "#{self.year}" if self.year
+    title_slug = title_slug.parameterize
+    if year.blank?
+      m = Movie.where(:title_slug=> title_slug).first
+      if m
+        count = 2
+        while true
+          title_slug = "#{title_slug}#{count}"
+          break if not Movie.where(:title_slug => title_slug).first
+          count += 1
+        end
+      end
+    end
+    self.title_slug = title_slug
   end
 
   def populate_thumbnails
